@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#fff8df">
 <meta name="description" content="Un jardín de flores amarillas, recuerdos y una sorpresa especial para Tifany.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Un jardín para Tifany 💛">
+<meta property="og:title" content="Jardín de Flores Amarillas 💛">
 <meta property="og:description" content="Flores amarillas, recuerdos y pequeños detalles hechos con cariño.">
 <meta property="og:url" content="https://josegarcia6.github.io/Flores-amarillas-experiencia/?preview=3">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Un jardín para Tifany 💛">
+<meta name="twitter:title" content="Jardín de Flores Amarillas 💛">
 <meta name="twitter:description" content="Flores amarillas, recuerdos y pequeños detalles hechos con cariño.">
-<title>Un jardín para Tifany 💛</title>
+<title>Jardín de Flores Amarillas 💛</title>
 <style>
 :root{color-scheme:light;--gold:#f5bd36;--deep:#8c5c08;--cream:#fff9e9;--ink:#49391f;--glass:rgba(255,253,245,.82)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100svh;overflow-x:hidden;color:var(--ink);font-family:"Segoe UI",system-ui,sans-serif;background:linear-gradient(135deg,rgba(255,249,226,.8),rgba(255,239,183,.5)),url("https://raw.githubusercontent.com/JoseGarcia6/Flores-amarilla/main/src/atardecre.jpg") center/cover fixed,#fff6d8}
@@ -147,7 +147,7 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
   loadAlbumFolder();
   const welcomeScreen=document.getElementById("welcome-screen");
   const shareButton=document.getElementById("share-garden"),shareStatus=document.getElementById("share-status");
-  shareButton.addEventListener("click",async()=>{const shareData={title:"Un jardín para Tifany 💛",text:"Te comparto este pequeño jardín de flores amarillas y recuerdos.",url:window.location.href};try{if(navigator.share){await navigator.share(shareData);shareStatus.textContent="¡Gracias por compartir este jardín! 💛"}else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(shareData.url);shareStatus.textContent="Enlace copiado. Ya puedes compartirlo 💛"}else{shareStatus.textContent="Copia la dirección de la página desde la barra del navegador para compartirla."}}catch(error){if(error.name!=="AbortError")shareStatus.textContent="No se pudo abrir la opción de compartir. Puedes copiar la dirección desde el navegador."}});
+  shareButton.addEventListener("click",async()=>{const shareData={title:"Jardín de Flores Amarillas 💛",text:"Te comparto este pequeño jardín de flores amarillas y recuerdos.",url:window.location.href};try{if(navigator.share){await navigator.share(shareData);shareStatus.textContent="¡Gracias por compartir este jardín! 💛"}else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(shareData.url);shareStatus.textContent="Enlace copiado. Ya puedes compartirlo 💛"}else{shareStatus.textContent="Copia la dirección de la página desde la barra del navegador para compartirla."}}catch(error){if(error.name!=="AbortError")shareStatus.textContent="No se pudo abrir la opción de compartir. Puedes copiar la dirección desde el navegador."}});
   document.getElementById("enter-garden").addEventListener("click",()=>{
     welcomeScreen.classList.add("is-leaving");
     document.querySelector(".page").classList.add("is-entered");
