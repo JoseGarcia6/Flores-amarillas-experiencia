@@ -156,6 +156,8 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
   document.getElementById("open-surprise").addEventListener("click",()=>openModal(surpriseModal));
   document.querySelectorAll("[data-close]").forEach(button=>button.addEventListener("click",()=>closeModal(button.closest(".modal"))));
   modals.forEach(modal=>modal.addEventListener("click",e=>{if(e.target===modal)closeModal(modal)}));
+  // Mantiene el foco dentro de cada diálogo mientras está abierto.
+  modals.forEach(modal=>modal.addEventListener("keydown",e=>{if(e.key!=="Tab"||modal.hidden)return;const items=[...modal.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')].filter(el=>!el.hidden);if(!items.length)return;const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}));
   document.addEventListener("keydown",e=>{if(e.key==="Escape"){const open=modals.find(m=>!m.hidden);if(open)closeModal(open)}});
   function showPhoto(index){currentPhoto=(index+photos.length)%photos.length;const p=photos[currentPhoto];lightboxImage.src=p.src;lightboxImage.alt=p.alt;lightboxCaption.textContent=(currentPhoto+1)+" de "+photos.length+" · "+p.caption;if(photoModal.hidden)openModal(photoModal)}
   document.getElementById("previous-photo").addEventListener("click",()=>showPhoto(currentPhoto-1));
