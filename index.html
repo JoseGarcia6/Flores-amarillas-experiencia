@@ -90,14 +90,9 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
 <section class="modal" id="secret-modal" role="dialog" aria-modal="true" aria-labelledby="secret-title" hidden><article class="letter surprise-card"><button class="close" type="button" data-close aria-label="Cerrar mensaje secreto">×</button><span class="big-flower" aria-hidden="true">💛</span><h2 id="secret-title">Un pequeño secreto</h2><p id="secret-message">Hay cosas bonitas que no necesitan una ocasión especial; basta con que nazcan del corazón. Esta flor es una de ellas. 🌼</p><p class="signature" id="secret-extra" hidden>Y si llegaste hasta aquí, que la vida te regale calma, sonrisas sinceras y días llenos de luz. Este jardín guarda un deseo más: que siempre tengas razones para sentirte querida. 🌻</p></article></section>
 <script>
 (() => {
-  // Las tres fotografías originales se mantienen siempre al inicio del álbum.
-  // Las imágenes que encuentre en src/album/ se incorporan automáticamente.
-  let photos = [
-    {src:"https://raw.githubusercontent.com/JoseGarcia6/Flores-amarilla/main/src/foto1.jpg",alt:"Un recuerdo especial",caption:"Un recuerdo especial 💛"},
-    {src:"https://raw.githubusercontent.com/JoseGarcia6/Flores-amarilla/main/src/foto2.jpg",alt:"Otro recuerdo bonito",caption:"Un momento bonito 🌼"},
-    {src:"https://raw.githubusercontent.com/JoseGarcia6/Flores-amarilla/main/src/foto3.jpg",alt:"Un momento para recordar",caption:"Un instante para recordar ✨"}
-  ];
-  const originalPhotoCount=photos.length;
+  // Todas las fotos del álbum se cargan desde src/album/ en este repositorio.
+  // Para agregar o quitar recuerdos, basta con gestionar los archivos de esa carpeta.
+  let photos = [];
   const gallery=document.getElementById("gallery"), count=document.getElementById("photo-count");
   const audio=document.getElementById("musica"), musicButton=document.getElementById("music-toggle");
   const letterModal=document.getElementById("letter-modal"), photoModal=document.getElementById("photo-modal"), surpriseModal=document.getElementById("surprise-modal"), secretModal=document.getElementById("secret-modal");
