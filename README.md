@@ -30,7 +30,7 @@ El archivo principal es `index.html`. Para publicar esta versión, abre **Settin
 3. Espera a que los cambios se guarden en la rama `main`. El álbum consulta esa carpeta y añade automáticamente las imágenes que encuentre; **no necesitas editar `index.html` por cada foto**.
 4. Las tres fotos originales siguen apareciendo primero. Las nuevas se agregan después y el contador se actualiza automáticamente.
 
-Las descripciones de las nuevas fotos se generan a partir del nombre del archivo. Por ejemplo, `recuerdo-playa.jpg` aparecerá con el texto “recuerdo playa 💛”. Para que el álbum cargue los archivos nuevos, el repositorio debe ser público y las imágenes deben estar confirmadas en `main`. La galería consulta la API pública de GitHub; si esa consulta no está disponible, mantiene las tres fotos originales.
+Los títulos personalizados se guardan en `src/album/album.json`. Añadí títulos cálidos para las nueve fotos actuales; puedes cambiarlos y editar su descripción sin tocar `index.html`. Si subes una foto nueva, seguirá apareciendo automáticamente aunque no tenga título: en ese caso se usará su nombre de archivo. Para personalizarla, agrega una entrada al JSON con el nombre exacto del archivo, un `title` y una `description`. El repositorio debe ser público y los archivos deben estar confirmados en `main`. La galería consulta la API pública de GitHub; si esa consulta no está disponible, mantiene las tres fotos originales.
 
 **Importante:** el fondo y la música todavía se cargan desde el repositorio original. Esta versión no modifica esos archivos ni el repositorio original.
 
