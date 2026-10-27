@@ -9,11 +9,15 @@
 <meta property="og:title" content="Un jardín para Tifany 💛">
 <meta property="og:description" content="Flores amarillas, recuerdos y pequeños detalles hechos con cariño.">
 <meta property="og:url" content="https://josegarcia6.github.io/Flores-amarillas-experiencia/">
-<meta property="og:image" content="https://raw.githubusercontent.com/JoseGarcia6/Flores-amarilla/main/src/foto1.jpg">
+<meta property="og:image" content="https://josegarcia6.github.io/Flores-amarillas-experiencia/src/ramo-flores-amarillas.svg">
+<meta property="og:image:secure_url" content="https://josegarcia6.github.io/Flores-amarillas-experiencia/src/ramo-flores-amarillas.svg">
+<meta property="og:image:type" content="image/svg+xml">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Un jardín para Tifany 💛">
 <meta name="twitter:description" content="Flores amarillas, recuerdos y pequeños detalles hechos con cariño.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/JoseGarcia6/Flores-amarilla/main/src/foto1.jpg">
+<meta name="twitter:image" content="https://josegarcia6.github.io/Flores-amarillas-experiencia/src/ramo-flores-amarillas.svg">
 <title>Un jardín para Tifany 💛</title>
 <style>
 :root{color-scheme:light;--gold:#f5bd36;--deep:#8c5c08;--cream:#fff9e9;--ink:#49391f;--glass:rgba(255,253,245,.82)}
@@ -122,11 +126,21 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
       if(!response.ok)throw new Error("No se pudo consultar la carpeta del álbum");
       const files=await response.json();
       const imageFiles=files.filter(file=>file.type==="file"&&/\.(avif|gif|jpe?g|png|webp)$/i.test(file.name));
-      const extra=imageFiles.map(file=>({
-        src:file.download_url,
-        alt:file.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," "),
-        caption:file.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ")+" 💛"
-      }));
+      let metadata={};
+      try{
+        const metaResponse=await fetch("https://raw.githubusercontent.com/JoseGarcia6/Flores-amarillas-experiencia/main/src/album/album.json");
+        if(metaResponse.ok)metadata=await metaResponse.json();
+      }catch(metaError){console.info("Se usarán nombres automáticos para las fotos sin metadatos personalizados.");}
+      const extra=imageFiles.map(file=>{
+        const fallback=file.name.replace(/\.[^.]+$/,"").replace(/[-_]+/g," ");
+        const details=metadata[file.name]||{};
+        return {
+          src:file.download_url,
+          alt:details.title||fallback,
+          caption:(details.title||fallback)+" 💛",
+          description:details.description||"Un recuerdo bonito para guardar en el corazón."
+        };
+      });
       const seen=new Set(photos.map(photo=>photo.src));
       photos=photos.concat(extra.filter(photo=>!seen.has(photo.src)));
       renderGallery();
