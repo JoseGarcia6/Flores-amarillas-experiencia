@@ -8,9 +8,13 @@ Segunda versión experimental de la página para Tifany. Este repositorio es ind
 - Pantalla de bienvenida para entrar al jardín y descubrir la experiencia paso a paso.
 - Álbum que conserva las tres fotos originales e incorpora automáticamente las imágenes nuevas de `src/album/`.
 - Visor ampliado con botones, flechas del teclado y deslizamiento lateral en teléfonos.
-- Contador de recuerdos y textos breves debajo de las fotos.
+- Carga diferida de imágenes adicionales, decodificación asíncrona y aviso visual si alguna foto no carga.
+- Contador de recuerdos y mensajes que reaccionan a la foto seleccionada.
 - Recorrido de pequeños mensajes, carta, música opcional, sorpresa con lluvia de flores y tarjeta digital descargable.
-- Detalle secreto: toca la flor amarilla que aparece encima del título.
+- Botón para compartir el jardín desde dispositivos compatibles; si no existe esa función, intenta copiar el enlace.
+- Dos pistas secretas: toca la flor amarilla tres veces y activa el texto del pie de página cinco veces.
+- Metadatos Open Graph y Twitter Card para mejorar la vista previa al compartir el enlace.
+- Mejoras de accesibilidad: foco visible, navegación por teclado y foco contenido dentro de los diálogos.
 - Animaciones respetuosas con la preferencia del sistema para reducir movimiento.
 
 ## Ver y publicar
