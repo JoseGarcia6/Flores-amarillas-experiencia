@@ -2,6 +2,9 @@
 
 Segunda versión experimental de la página para Tifany. Este repositorio es independiente de **Flores-amarilla**: los cambios de aquí no modifican la versión original.
 
+# Direcion del sitio 
+https://josegarcia6.github.io/Flores-amarillas-experiencia/
+
 ## Estado de esta versión
 
 - Diseño cálido y adaptable a teléfono y computadora.
