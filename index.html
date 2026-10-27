@@ -104,13 +104,20 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
   const modals=[letterModal,photoModal,surpriseModal,secretModal], reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const lightboxImage=document.getElementById("lightbox-image"), lightboxCaption=document.getElementById("lightbox-caption");
   let currentPhoto=0,lastFocused=null,flowerTimer=null,touchStartX=null,touchStartY=null;
+  const gallerySection=document.querySelector(".gallery-section");
   function renderGallery(){
     gallery.replaceChildren();
+    gallerySection.hidden=photos.length===0;
     photos.forEach((photo,index)=>{
       const button=document.createElement("button");button.type="button";button.className="photo";button.setAttribute("aria-label","Ver foto "+(index+1)+": "+photo.caption);
-      const img=document.createElement("img");img.src=photo.src;img.alt=photo.alt;img.loading=index<3?"eager":"lazy";img.decoding="async";img.addEventListener("error",()=>{img.classList.add("is-broken");img.alt="No se pudo cargar esta imagen: "+photo.alt;label.textContent="Imagen no disponible · "+photo.caption;},{once:true});
+      const img=document.createElement("img");img.alt=photo.alt;img.loading=index<3?"eager":"lazy";img.decoding="async";
+      img.addEventListener("error",()=>{
+        photos=photos.filter(item=>item.src!==photo.src);
+        renderGallery();
+      },{once:true});
+      img.src=photo.src;
       const label=document.createElement("span");label.className="photo-label";label.textContent=photo.caption;
-      button.append(img,label);button.addEventListener("click",()=>{document.getElementById("story-progress").textContent="Recuerdo "+(index+1)+" de "+photos.length+": "+photo.caption;showPhoto(index)});gallery.append(button);
+      button.append(img,label);button.addEventListener("click",()=>{if(!photos.length)return;const currentIndex=photos.findIndex(item=>item.src===photo.src);if(currentIndex<0)return;document.getElementById("story-progress").textContent="Recuerdo "+(currentIndex+1)+" de "+photos.length+": "+photo.caption;showPhoto(currentIndex)});gallery.append(button);
     });
     count.textContent=photos.length+" "+(photos.length===1?"recuerdo":"recuerdos");
   }
@@ -139,7 +146,7 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
       photos=photos.concat(extra.filter(photo=>!seen.has(photo.src)));
       renderGallery();
     }catch(error){
-      console.warn("El álbum mantiene las tres fotos originales; no se pudieron cargar las fotos adicionales.",error);
+      console.warn("No se pudieron cargar las fotos adicionales; se mostrarán solo las imágenes disponibles.",error);
       renderGallery();
     }
   }
@@ -167,7 +174,7 @@ footer{cursor:pointer;transition:transform .2s}footer:focus-visible{outline:3px 
   // Mantiene el foco dentro de cada diálogo mientras está abierto.
   modals.forEach(modal=>modal.addEventListener("keydown",e=>{if(e.key!=="Tab"||modal.hidden)return;const items=[...modal.querySelectorAll('button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')].filter(el=>!el.hidden);if(!items.length)return;const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}));
   document.addEventListener("keydown",e=>{if(e.key==="Escape"){const open=modals.find(m=>!m.hidden);if(open)closeModal(open)}});
-  function showPhoto(index){currentPhoto=(index+photos.length)%photos.length;const p=photos[currentPhoto];lightboxImage.src=p.src;lightboxImage.alt=p.alt;lightboxCaption.textContent=(currentPhoto+1)+" de "+photos.length+" · "+p.caption+(p.description?" — "+p.description:"");if(photoModal.hidden)openModal(photoModal)}
+  function showPhoto(index){if(!photos.length)return;currentPhoto=(index+photos.length)%photos.length;const p=photos[currentPhoto];lightboxImage.src=p.src;lightboxImage.alt=p.alt;lightboxCaption.textContent=(currentPhoto+1)+" de "+photos.length+" · "+p.caption+(p.description?" — "+p.description:"");if(photoModal.hidden)openModal(photoModal)}
   document.getElementById("previous-photo").addEventListener("click",()=>showPhoto(currentPhoto-1));
   document.getElementById("next-photo").addEventListener("click",()=>showPhoto(currentPhoto+1));
   // En teléfonos, deslizar a izquierda/derecha permite recorrer las fotos.
