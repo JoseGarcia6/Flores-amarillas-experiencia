@@ -5,10 +5,11 @@ Segunda versión experimental de la página para Tifany. Este repositorio es ind
 ## Estado de esta versión
 
 - Diseño cálido y adaptable a teléfono y computadora.
-- Álbum que genera sus tarjetas desde una lista de fotos, en vez de tener solo tres espacios fijos.
-- Visor ampliado con botones para foto anterior/siguiente; también admite las flechas del teclado.
+- Pantalla de bienvenida para entrar al jardín y descubrir la experiencia paso a paso.
+- Álbum que conserva las tres fotos originales e incorpora automáticamente las imágenes nuevas de `src/album/`.
+- Visor ampliado con botones, flechas del teclado y deslizamiento lateral en teléfonos.
 - Contador de recuerdos y textos breves debajo de las fotos.
-- Carta, música opcional y sorpresa con lluvia de flores.
+- Recorrido de pequeños mensajes, carta, música opcional, sorpresa con lluvia de flores y tarjeta digital descargable.
 - Detalle secreto: toca la flor amarilla que aparece encima del título.
 - Animaciones respetuosas con la preferencia del sistema para reducir movimiento.
 
