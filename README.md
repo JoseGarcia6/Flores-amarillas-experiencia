@@ -20,17 +20,14 @@ El archivo principal es `index.html`. Para publicar esta versión, abre **Settin
 
 ## Cómo añadir fotos al álbum
 
-1. Sube la foto nueva a una carpeta `src/album/` de este repositorio. Usa nombres sencillos, por ejemplo `recuerdo-04.jpg`.
-2. Abre `index.html` y busca el bloque `const photos = [`.
-3. Añade un objeto más dentro de la lista, separándolo con una coma:
+1. Sube las imágenes a `src/album/` de este repositorio.
+2. Usa formatos habituales: JPG, JPEG, PNG, WebP, GIF o AVIF. Es mejor usar nombres sencillos, por ejemplo `recuerdo-04.jpg`.
+3. Espera a que los cambios se guarden en la rama `main`. El álbum consulta esa carpeta y añade automáticamente las imágenes que encuentre; **no necesitas editar `index.html` por cada foto**.
+4. Las tres fotos originales siguen apareciendo primero. Las nuevas se agregan después y el contador se actualiza automáticamente.
 
-```js
-{src:"src/album/recuerdo-04.jpg",alt:"Descripción de la foto",caption:"Una frase bonita 💛"}
-```
+Las descripciones de las nuevas fotos se generan a partir del nombre del archivo. Por ejemplo, `recuerdo-playa.jpg` aparecerá con el texto “recuerdo playa 💛”. Para que el álbum cargue los archivos nuevos, el repositorio debe ser público y las imágenes deben estar confirmadas en `main`. La galería consulta la API pública de GitHub; si esa consulta no está disponible, mantiene las tres fotos originales.
 
-4. Guarda los cambios. El álbum se adapta automáticamente al número de fotos; no hace falta crear botones manualmente.
-
-**Importante:** las tres fotos actuales, el fondo y la música se cargan temporalmente desde los archivos del repositorio original para conservar el aspecto mientras preparamos esta versión. Cuando quieras que este proyecto sea completamente autónomo, copia también esos cinco archivos a su propia carpeta `src/` y cambia sus rutas en `index.html` a rutas locales. El repositorio original no se modifica.
+**Importante:** el fondo y la música todavía se cargan desde el repositorio original. Esta versión no modifica esos archivos ni el repositorio original.
 
 ## Personalización
 
